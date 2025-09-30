@@ -1,8 +1,9 @@
-# src/main/resources/application.yml ??? config-server
 server:
   port: 8888
 
 spring:
+  application:
+    name: config-server
   profiles:
     active: native
   cloud:
@@ -10,3 +11,10 @@ spring:
       server:
         native:
           search-locations: file:///C:/CarRentProj/config-repo
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true

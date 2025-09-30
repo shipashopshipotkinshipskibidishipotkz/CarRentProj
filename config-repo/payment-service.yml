@@ -1,9 +1,9 @@
 server:
-  port: 8081
+  port: 8083
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/car_rento
+    url: jdbc:postgresql://localhost:5433/payment_rento
     username: postgres
     password: 123
   jpa:
