@@ -1,0 +1,20 @@
+server:
+  port: 8081 # Порт, на котором будет работать car-service
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/car_db
+    username: postgres
+    password: 12345
+  jpa:
+    hibernate:
+      ddl-auto: update # Обновляет схему БД автоматически
+    show-sql: true # Показывает SQL-запросы в логах
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/ # Адрес вашего Eureka Server
+  instance:
+    prefer-ip-address: true # Eureka будет регистрировать IP-адрес сервиса вместо имени хоста
+    # hostname: localhost # Можно указать, но prefer-ip-address чаще достаточен
