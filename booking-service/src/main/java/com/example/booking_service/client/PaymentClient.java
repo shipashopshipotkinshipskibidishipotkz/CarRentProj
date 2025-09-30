@@ -10,6 +10,6 @@ import com.example.booking_service.dto.PaymentDTO;
 public interface PaymentClient {
 
     @PostMapping("/payments")
-    @CircuitBreaker(name = "payment-service")  // блокировка без fallback
+    @CircuitBreaker(name = "payment-service")  // CircuitBreaker без fallback
     Object createPayment(@RequestBody PaymentDTO payment);
 }

@@ -2,6 +2,8 @@ package com.example.payment_service.controller;
 
 import com.example.payment_service.model.Payment;
 import com.example.payment_service.repository.PaymentRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,34 +12,41 @@ import java.util.List;
 @RequestMapping("/payments")
 public class PaymentController {
 
+    private static final Logger logger = LoggerFactory.getLogger(PaymentController.class);
+
     private final PaymentRepository paymentRepository;
 
     public PaymentController(PaymentRepository paymentRepository) {
         this.paymentRepository = paymentRepository;
     }
 
-    // Получить все платежи
     @GetMapping
     public List<Payment> getAllPayments() {
+        logger.info("Получение всех платежей");
         return paymentRepository.findAll();
     }
 
-    // Получить платёж по id
     @GetMapping("/{id}")
     public Payment getPaymentById(@PathVariable Long id) {
+        logger.info("Получение платежа по id={}", id);
         return paymentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Платёж не найден: " + id));
+                .orElseThrow(() -> {
+                    logger.warn("Платёж не найден: {}", id);
+                    return new RuntimeException("Платёж не найден: " + id);
+                });
     }
 
-    // Создать новый платёж
     @PostMapping
     public Payment createPayment(@RequestBody Payment payment) {
-        return paymentRepository.save(payment);
+        logger.info("Создание платежа: {}", payment);
+        Payment savedPayment = paymentRepository.save(payment);
+        logger.info("Платёж сохранён: {}", savedPayment);
+        return savedPayment;
     }
 
-    // Удалить платёж
     @DeleteMapping("/{id}")
     public void deletePayment(@PathVariable Long id) {
+        logger.info("Удаление платежа id={}", id);
         paymentRepository.deleteById(id);
     }
 }

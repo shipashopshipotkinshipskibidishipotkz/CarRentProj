@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface CarClient {
 
     @GetMapping("/cars/{id}")
-    @CircuitBreaker(name = "car-service")  // блокировка без fallback
+    @CircuitBreaker(name = "car-service")  // CircuitBreaker без fallback
     String getCarById(@PathVariable("id") Long id);
 }

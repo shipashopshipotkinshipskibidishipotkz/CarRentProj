@@ -41,3 +41,10 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+logging:
+  file:
+    name: ./logs/api-gateway.log   # путь к файлу логов (создастся в папке проекта api-gateway)
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: DEBUG
