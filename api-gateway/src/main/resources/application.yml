@@ -1,8 +1,33 @@
 spring:
   application:
-    name: api-gataway
+    name: api-gateway
   config:
-    import: "configserver:http://localhost:8888"
+    import: "optional:configserver:http://localhost:8888"
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true  # Включить автоматическое обнаружение
+          lower-case-service-id: true
+      routes:
+        - id: car-service
+          uri: lb://car-service  # Используем load balancer
+          predicates:
+            - Path=/cars/**
+          filters:
+            - RewritePath=/cars/(?<segment>.*), /$\{segment}  # Убираем /cars из пути
+        - id: booking-service
+          uri: lb://booking-service
+          predicates:
+            - Path=/bookings/**
+          filters:
+            - RewritePath=/bookings/(?<segment>.*), /$\{segment}
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/payments/**
+          filters:
+            - RewritePath=/payments/(?<segment>.*), /$\{segment}
 
 server:
   port: 8080
@@ -13,4 +38,3 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
-
