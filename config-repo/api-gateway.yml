@@ -11,14 +11,31 @@ spring:
           uri: lb://car-service
           predicates:
             - Path=/cars/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: carServiceCircuitBreaker
+                fallbackUri: forward:/fallback/cars
+
         - id: booking-service
           uri: lb://booking-service
           predicates:
             - Path=/bookings/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: bookingServiceCircuitBreaker
+                fallbackUri: forward:/fallback/bookings
+
         - id: payment-service
           uri: lb://payment-service
           predicates:
             - Path=/payments/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: paymentServiceCircuitBreaker
+                fallbackUri: forward:/fallback/payments
 
 eureka:
   client:
