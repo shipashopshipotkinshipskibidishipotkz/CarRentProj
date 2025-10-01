@@ -1,8 +1,8 @@
 export const API_CONFIG = {
-    BASE_URL: 'http://localhost:8080',  // Теперь через API Gateway!
+    BASE_URL: 'http://localhost:8080',
     ENDPOINTS: {
-        CARS: '/cars',
         BOOKINGS: '/bookings',
-        PAYMENTS: '/payments'
+        PAYMENTS: '/payments',
+        CARS: '/cars'
     }
-}
+};

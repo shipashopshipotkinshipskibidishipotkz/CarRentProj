@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
-export const useApi = (apiFunction, immediate = true) => {
+const useApi = (apiFunction, immediate = true) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const execute = async (...args) => {
+    const execute = useCallback(async (...args) => {
         try {
             setLoading(true);
             setError(null);
@@ -18,13 +18,15 @@ export const useApi = (apiFunction, immediate = true) => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [apiFunction]);
 
     useEffect(() => {
         if (immediate) {
             execute();
         }
-    }, []);
+    }, [execute, immediate]);
 
     return { data, loading, error, execute, setData };
 };
+
+export default useApi;

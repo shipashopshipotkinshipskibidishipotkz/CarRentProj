@@ -1,5 +1,5 @@
 import React from 'react';
-import { useApi } from '../hooks/useApi';
+import useApi from '../hooks/useApi';
 import { bookingService } from '../services/bookingService';
 import { Calendar, User, Car, Trash2, Clock, CheckCircle, XCircle } from 'lucide-react';
 

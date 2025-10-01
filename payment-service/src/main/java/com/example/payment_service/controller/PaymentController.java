@@ -2,6 +2,10 @@ package com.example.payment_service.controller;
 
 import com.example.payment_service.model.Payment;
 import com.example.payment_service.repository.PaymentRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -20,14 +24,22 @@ public class PaymentController {
         this.paymentRepository = paymentRepository;
     }
 
+    @Operation(summary = "Получить все платежи")
     @GetMapping
     public List<Payment> getAllPayments() {
         logger.info("Получение всех платежей");
         return paymentRepository.findAll();
     }
 
+    @Operation(summary = "Получить платеж по ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Платёж найден"),
+            @ApiResponse(responseCode = "404", description = "Платёж не найден")
+    })
     @GetMapping("/{id}")
-    public Payment getPaymentById(@PathVariable Long id) {
+    public Payment getPaymentById(
+            @Parameter(description = "ID платежа", example = "1")
+            @PathVariable Long id) {
         logger.info("Получение платежа по id={}", id);
         return paymentRepository.findById(id)
                 .orElseThrow(() -> {
@@ -36,6 +48,7 @@ public class PaymentController {
                 });
     }
 
+    @Operation(summary = "Создать новый платёж")
     @PostMapping
     public Payment createPayment(@RequestBody Payment payment) {
         logger.info("Создание платежа: {}", payment);
@@ -44,8 +57,11 @@ public class PaymentController {
         return savedPayment;
     }
 
+    @Operation(summary = "Удалить платёж по ID")
     @DeleteMapping("/{id}")
-    public void deletePayment(@PathVariable Long id) {
+    public void deletePayment(
+            @Parameter(description = "ID платежа", example = "1")
+            @PathVariable Long id) {
         logger.info("Удаление платежа id={}", id);
         paymentRepository.deleteById(id);
     }

@@ -2,12 +2,18 @@ import React from 'react';
 import { Car, Calendar, DollarSign, Gauge } from 'lucide-react';
 
 const CarCard = ({ car, onBook }) => {
+    const photoPath = `/images/cars/${car.brand.toLowerCase().replace(/ /g, '-')}-${car.model.toLowerCase().replace(/ /g, '-')}.jpg`;
+
     return (
         <div style={styles.carCard}>
-            <div style={styles.carImage}>
-                {car.photoUrl ? (
-                    <img src={car.photoUrl} alt={`${car.brand} ${car.model}`} style={styles.carImage} />
-                ) : (
+            <div style={styles.carImageWrapper}>
+                <img
+                    src={photoPath}
+                    alt={`${car.brand} ${car.model}`}
+                    style={styles.carImage}
+                    onError={(e) => { e.target.src = ''; }} // если фотка отсутствует, оставим placeholder
+                />
+                {!car.photoUrl && (
                     <div style={styles.carPlaceholder}>
                         <Car size={48} />
                     </div>
@@ -50,24 +56,32 @@ const styles = {
         background: 'white',
         borderRadius: '12px',
         overflow: 'hidden',
-        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+        boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+        cursor: 'pointer',
     },
-    carImage: {
+    carImageWrapper: {
+        width: '100%',
         height: '200px',
-        background: '#f8f9fa',
+        overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        overflow: 'hidden',
+        background: '#f8f9fa',
+        position: 'relative',
+    },
+    carImage: {
         width: '100%',
-        objectFit: 'cover'
+        height: '100%',
+        objectFit: 'cover',
+        transition: 'transform 0.3s ease',
     },
     carPlaceholder: {
+        position: 'absolute',
         color: '#6c757d',
     },
     carInfo: {
-        padding: '1.5rem',
+        padding: '1rem 1.5rem',
     },
     carTitle: {
         fontSize: '1.25rem',
@@ -78,7 +92,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         gap: '0.5rem',
-        marginBottom: '1.5rem',
+        marginBottom: '1rem',
     },
     detail: {
         display: 'flex',

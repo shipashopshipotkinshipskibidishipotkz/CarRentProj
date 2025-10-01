@@ -1,28 +1,38 @@
 package com.example.car_service.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "cars")
+@Schema(description = "Сущность машины")
 public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "car_id")
+    @Schema(description = "ID машины", example = "1")
     private Long carId;
 
+    @Schema(description = "Марка машины", example = "Toyota")
     private String brand;
+
+    @Schema(description = "Модель машины", example = "Camry")
     private String model;
 
     @Column(name = "release_year")
+    @Schema(description = "Год выпуска", example = "2020")
     private int releaseYear;
 
+    @Schema(description = "Пробег машины в км", example = "50000")
     private int mileage;
+
+    @Schema(description = "Цена машины", example = "20000.0")
     private double price;
 
     @Column(name = "photo_url")
+    @Schema(description = "Ссылка на фото машины", example = "https://example.com/car.jpg")
     private String photoUrl;
-
 
     public Long getCarId() {
         return carId;

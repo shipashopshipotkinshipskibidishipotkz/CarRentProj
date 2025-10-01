@@ -6,6 +6,10 @@ import com.example.booking_service.dto.PaymentDTO;
 import com.example.booking_service.model.Booking;
 import com.example.booking_service.repository.BookingRepository;
 import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -29,14 +33,22 @@ public class BookingController {
         this.paymentClient = paymentClient;
     }
 
+    @Operation(summary = "Получить все бронирования")
     @GetMapping
     public List<Booking> getAllBookings() {
         logger.info("Получение всех бронирований");
         return bookingRepository.findAll();
     }
 
+    @Operation(summary = "Получить бронирование по ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Бронирование найдено"),
+            @ApiResponse(responseCode = "404", description = "Бронирование не найдено")
+    })
     @GetMapping("/{id}")
-    public Booking getBookingById(@PathVariable Long id) {
+    public Booking getBookingById(
+            @Parameter(description = "ID бронирования", example = "1")
+            @PathVariable Long id) {
         logger.info("Получение бронирования по id={}", id);
         return bookingRepository.findById(id)
                 .orElseThrow(() -> {
@@ -45,19 +57,26 @@ public class BookingController {
                 });
     }
 
+    @Operation(summary = "Создать новое бронирование")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Бронирование успешно создано"),
+            @ApiResponse(responseCode = "503", description = "Сервис временно недоступен"),
+            @ApiResponse(responseCode = "500", description = "Ошибка при создании бронирования")
+    })
     @PostMapping
     public ResponseEntity<?> createBooking(@RequestBody Booking booking) {
         logger.info("Создание бронирования: {}", booking);
         try {
-            // проверяем машину
             String carInfo = carClient.getCarById(booking.getCarId());
             logger.info("Ответ от car-service: {}", carInfo);
 
             Booking savedBooking = bookingRepository.save(booking);
             logger.info("Бронирование сохранено: {}", savedBooking);
 
-            // создаём платёж через DTO
-            PaymentDTO paymentDTO = new PaymentDTO(savedBooking.getBookingId(), 100.0);
+            PaymentDTO paymentDTO = new PaymentDTO();
+            paymentDTO.setBookingId(savedBooking.getBookingId());
+            paymentDTO.setAmount(100.0);
+
             paymentClient.createPayment(paymentDTO);
             logger.info("Платёж создан для бронирования id={}", savedBooking.getBookingId());
 
@@ -74,8 +93,11 @@ public class BookingController {
         }
     }
 
+    @Operation(summary = "Удалить бронирование по ID")
     @DeleteMapping("/{id}")
-    public void deleteBooking(@PathVariable Long id) {
+    public void deleteBooking(
+            @Parameter(description = "ID бронирования", example = "1")
+            @PathVariable Long id) {
         logger.info("Удаление бронирования id={}", id);
         bookingRepository.deleteById(id);
     }

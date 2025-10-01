@@ -1,21 +1,31 @@
 package com.example.booking_service.model;
-
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Entity
 @Table(name = "bookings")
+@Schema(description = "Сущность бронирования")
 public class Booking {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "booking_id")
+    @Schema(description = "ID бронирования", example = "1")
     private Long bookingId;
 
+    @Schema(description = "ID пользователя", example = "5")
     private Long userId;
+
+    @Schema(description = "ID машины", example = "10")
     private Long carId;
+
+    @Schema(description = "Дата начала бронирования")
     private LocalDate startDate;
+
+    @Schema(description = "Дата окончания бронирования")
     private LocalDate endDate;
+
+    @Schema(description = "Статус бронирования", example = "ACTIVE")
     private String status;
 
     // --- getters & setters ---

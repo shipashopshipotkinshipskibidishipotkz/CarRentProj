@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
-import { useApi } from '../hooks/useApi';
+import React, { useState, useEffect } from 'react';
+import useApi from '../hooks/useApi';
 import { carService } from '../services/carService';
 import CarCard from './CarCard';
 import BookingForm from './BookingForm';
 
 const CarList = () => {
-    const { data: cars, loading, error, execute: refreshCars } = useApi(carService.getAllCars);
+    const { data: cars, loading, error, execute: refreshCars } = useApi(carService.getAllCars, false);
     const [selectedCar, setSelectedCar] = useState(null);
     const [showBookingForm, setShowBookingForm] = useState(false);
+
+    useEffect(() => {
+        refreshCars();
+    }, [refreshCars]);
 
     const handleBookCar = (car) => {
         setSelectedCar(car);
