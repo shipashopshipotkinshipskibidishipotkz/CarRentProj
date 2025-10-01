@@ -1,0 +1,77 @@
+2025-09-30 21:57:57 INFO  [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2025-09-30 21:57:57 INFO  [main] c.e.a.ApiGatewayApplication - Starting ApiGatewayApplication using Java 24 with PID 1896 (C:\CarRentProj\api-gateway\target\classes started by z in C:\CarRentProj)
+2025-09-30 21:57:57 INFO  [main] c.e.a.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2025-09-30 21:57:57 INFO  [main] o.s.c.c.c.ConfigServerConfigDataLoader - Fetching config from server at : http://localhost:8888
+2025-09-30 21:57:57 INFO  [main] o.s.c.c.c.ConfigServerConfigDataLoader - Located environment: name=api-gataway, profiles=[default], label=null, version=null, state=null
+2025-09-30 21:57:58 INFO  [main] o.s.cloud.context.scope.GenericScope - BeanFactory id=6b8ef135-d5f3-3a8f-8d3c-716d4edfaebf
+2025-09-30 21:57:58 WARN  [main] o.s.c.g.c.GatewayClassPathWarningAutoConfiguration - 
+
+**********************************************************
+
+The artifact spring-cloud-gateway-server is deprecated. It will be removed in the next major release. Please add spring-cloud-gateway-server-webflux dependency.
+
+**********************************************************
+
+
+2025-09-30 21:57:59 INFO  [main] o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-09-30 21:58:00 INFO  [main] o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2025-09-30 21:58:00 INFO  [main] o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2025-09-30 21:58:00 INFO  [main] o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2025-09-30 21:58:00 INFO  [main] o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2025-09-30 21:58:00 INFO  [main] o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2025-09-30 21:58:00 INFO  [main] o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2025-09-30 21:58:00 INFO  [main] o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2025-09-30 21:58:00 INFO  [main] o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2025-09-30 21:58:00 INFO  [main] o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2025-09-30 21:58:00 INFO  [main] o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2025-09-30 21:58:00 INFO  [main] o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2025-09-30 21:58:00 INFO  [main] o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2025-09-30 21:58:00 INFO  [main] o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2025-09-30 21:58:00 INFO  [main] o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2025-09-30 21:58:01 INFO  [main] o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-09-30 21:58:02 INFO  [main] o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-09-30 21:58:02 INFO  [main] o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-09-30 21:58:02 INFO  [main] o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2025-09-30 21:58:02 WARN  [main] o.s.c.g.s.w.s.StarterDeprecatedAutoConfiguration - 
+
+**********************************************************
+
+spring-cloud-starter-gateway is deprecated. It will be removed in the next major release. Please use spring-cloud-starter-gateway-server-webflux instead.
+
+**********************************************************
+
+
+2025-09-30 21:58:02 WARN  [main] o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-09-30 21:58:02 INFO  [main] o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-09-30 21:58:02 INFO  [main] c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2025-09-30 21:58:02 INFO  [main] c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-09-30 21:58:02 INFO  [main] c.netflix.discovery.DiscoveryClient - Disable delta property : false
+2025-09-30 21:58:02 INFO  [main] c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2025-09-30 21:58:02 INFO  [main] c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2025-09-30 21:58:02 INFO  [main] c.netflix.discovery.DiscoveryClient - Application is null : false
+2025-09-30 21:58:02 INFO  [main] c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2025-09-30 21:58:02 INFO  [main] c.netflix.discovery.DiscoveryClient - Application version is -1: true
+2025-09-30 21:58:02 INFO  [main] c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2025-09-30 21:58:02 INFO  [main] c.netflix.discovery.DiscoveryClient - The response status is 200
+2025-09-30 21:58:02 INFO  [main] c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2025-09-30 21:58:02 INFO  [main] c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-09-30 21:58:02 INFO  [main] c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1759258682926 with initial instances count: 1
+2025-09-30 21:58:02 INFO  [main] o.s.c.n.e.s.EurekaServiceRegistry - Registering application API-GATAWAY with eureka with status UP
+2025-09-30 21:58:02 INFO  [main] c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1759258682928, current=UP, previous=STARTING]
+2025-09-30 21:58:02 INFO  [DiscoveryClient-InstanceInfoReplicator-%d] c.netflix.discovery.DiscoveryClient - DiscoveryClient_API-GATAWAY/localhost:api-gataway:8080: registering service...
+2025-09-30 21:58:02 INFO  [DiscoveryClient-InstanceInfoReplicator-%d] c.netflix.discovery.DiscoveryClient - DiscoveryClient_API-GATAWAY/localhost:api-gataway:8080 - registration status: 204
+2025-09-30 21:58:03 INFO  [main] o.s.b.w.e.netty.NettyWebServer - Netty started on port 8080 (http)
+2025-09-30 21:58:03 INFO  [main] o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8080
+2025-09-30 21:58:04 INFO  [main] o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-09-30 21:58:05 INFO  [main] o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-09-30 21:58:05 INFO  [main] c.e.a.ApiGatewayApplication - Started ApiGatewayApplication in 9.271 seconds (process running for 9.847)
+2025-09-30 21:58:45 INFO  [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry - Unregistering application API-GATAWAY with eureka with status DOWN
+2025-09-30 21:58:45 INFO  [SpringApplicationShutdownHook] c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1759258725713, current=DOWN, previous=UP]
+2025-09-30 21:58:45 INFO  [DiscoveryClient-InstanceInfoReplicator-%d] c.netflix.discovery.DiscoveryClient - DiscoveryClient_API-GATAWAY/localhost:api-gataway:8080: registering service...
+2025-09-30 21:58:45 INFO  [SpringApplicationShutdownHook] o.s.b.w.e.netty.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-30 21:58:45 INFO  [netty-shutdown] o.s.b.w.e.netty.GracefulShutdown - Graceful shutdown complete
+2025-09-30 21:58:45 INFO  [DiscoveryClient-InstanceInfoReplicator-%d] c.netflix.discovery.DiscoveryClient - DiscoveryClient_API-GATAWAY/localhost:api-gataway:8080 - registration status: 204
+2025-09-30 21:58:47 INFO  [SpringApplicationShutdownHook] c.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ...
+2025-09-30 21:58:50 INFO  [SpringApplicationShutdownHook] c.netflix.discovery.DiscoveryClient - Unregistering ...
+2025-09-30 21:58:50 INFO  [SpringApplicationShutdownHook] c.netflix.discovery.DiscoveryClient - DiscoveryClient_API-GATAWAY/localhost:api-gataway:8080 - deregister  status: 200
+2025-09-30 21:58:50 INFO  [SpringApplicationShutdownHook] c.netflix.discovery.DiscoveryClient - Completed shut down of DiscoveryClient

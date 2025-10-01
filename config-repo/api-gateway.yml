@@ -1,50 +1,47 @@
-server:
-  port: 8080
-
 spring:
   application:
     name: api-gateway
   cloud:
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: ["http://localhost:3002"]
+            allowedMethods: [GET, POST, PUT, DELETE, OPTIONS]
+            allowedHeaders: ["*"]
+            allowCredentials: true
       routes:
         - id: car-service
           uri: lb://car-service
           predicates:
             - Path=/cars/**
           filters:
-            - name: CircuitBreaker
-              args:
-                name: carServiceCircuitBreaker
-                fallbackUri: forward:/fallback/cars
+            - RewritePath=/cars/(?<segment>.*), /cars/${segment}
 
         - id: booking-service
           uri: lb://booking-service
           predicates:
             - Path=/bookings/**
           filters:
-            - name: CircuitBreaker
-              args:
-                name: bookingServiceCircuitBreaker
-                fallbackUri: forward:/fallback/bookings
+            - RewritePath=/bookings/(?<segment>.*), /bookings/${segment}
 
         - id: payment-service
           uri: lb://payment-service
           predicates:
             - Path=/payments/**
           filters:
-            - name: CircuitBreaker
-              args:
-                name: paymentServiceCircuitBreaker
-                fallbackUri: forward:/fallback/payments
+            - RewritePath=/payments/(?<segment>.*), /payments/${segment}
+
+
+server:
+  port: 8080
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
-
-logging:
-  file:
-    name: ./logs/api-gateway.log   # путь к файлу логов (создастся в папке проекта api-gateway)
-  level:
-    root: INFO
-    org.springframework.cloud.gateway: DEBUG
+    register-with-eureka: true
+    fetch-registry: true
+    registry-fetch-interval-seconds: 5
+    healthcheck:
+      enabled: false
